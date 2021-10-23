@@ -1,0 +1,31 @@
+{% extends 'base_template.html' %}
+
+{% block head %}
+<title>Chirper, the Twitter for l33ts</title>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/index.css">
+{% endblock %}
+
+{% block body %}
+<div id="parent">
+    <div style="font-size: 40px;">Chirper</div><br>
+    Send your chirps in<br>
+    <form id="sendchirp" action="/" method="POST">
+        <label>
+            Name <input type="text" name="name" id="name"><br>
+        </label>
+        <label>
+            Chirp <textarea name="post" form="sendchirp"></textarea><br>
+        </label>
+        <center><button type="submit">Chirp</button></center>
+    </form>
+    <div id="tweets">
+        {% for post in posts %}
+        <div class="tweet">
+            <div class="name">{{ post[1] + " chirped:" }}</div>
+            <div class="text">{{ post[2] }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
